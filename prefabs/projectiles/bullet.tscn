@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://crmtnyna6vibt"]
+
+[ext_resource type="Script" path="res://prefabs/projectiles/Bullet.gd" id="1_qnifs"]
+[ext_resource type="Texture2D" uid="uid://6en42kqqao4m" path="res://assets/Tiles/Colored/tile_0073.png" id="2_vjm2c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kgkl8"]
+radius = 3.0
+
+[node name="Bullet" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_qnifs")
+
+[node name="Projectile" type="Sprite2D" parent="."]
+rotation = 0.785398
+scale = Vector2(2, 2)
+texture = ExtResource("2_vjm2c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
+shape = SubResource("CircleShape2D_kgkl8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

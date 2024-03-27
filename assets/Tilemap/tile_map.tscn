@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2fdhvixfc2ty"]
+
+[ext_resource type="TileSet" uid="uid://ca5u52y7tiw8v" path="res://assets/Tilemap/kenney_tile_set.tres" id="1_nq5ct"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_nq5ct")
+format = 2

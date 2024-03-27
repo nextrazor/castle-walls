@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://pbmyh1qru7p"]
+
+[ext_resource type="Script" path="res://assets/characters/happy_boo/happy_boo.gd" id="1_kg7lb"]
+[ext_resource type="Texture2D" uid="uid://cji3ii6o6knra" path="res://assets/Tiles/Colored/tile_0004.png" id="2_r6mlb"]
+
+[node name="HappyBoo" type="Node2D"]
+script = ExtResource("1_kg7lb")
+
+[node name="Tile0004" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_r6mlb")

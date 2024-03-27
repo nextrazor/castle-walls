@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://dy00kr6uj17ni"]
+
+[ext_resource type="Script" path="res://prefabs/player/player.gd" id="1_tcu3e"]
+[ext_resource type="PackedScene" uid="uid://cdgdfdhi42exw" path="res://prefabs/weapons/gun.tscn" id="2_l452a"]
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://assets/characters/happy_boo/happy_boo.tscn" id="3_3hwgb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rcme"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fabpj"]
+radius = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fecy3"]
+bg_color = Color(0.207843, 0.207843, 0.207843, 0.803922)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxr0j"]
+bg_color = Color(0.0823529, 0.737255, 0.309804, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_tcu3e")
+
+[node name="Gun" parent="." instance=ExtResource("2_l452a")]
+
+[node name="HappyBoo" parent="." instance=ExtResource("3_3hwgb")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_8rcme")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_fabpj")
+
+[node name="HPBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -19.0
+offset_top = -47.0
+offset_right = 289.0
+offset_bottom = 3.0
+scale = Vector2(0.12, 0.12)
+theme_override_styles/background = SubResource("StyleBoxFlat_fecy3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sxr0j")
+value = 100.0
