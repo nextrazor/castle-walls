@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdgdfdhi42exw"]
+[gd_scene load_steps=5 format=3 uid="uid://cdgdfdhi42exw"]
 
 [ext_resource type="Script" path="res://prefabs/weapons/gun.gd" id="1_rv16m"]
-[ext_resource type="Texture2D" uid="uid://c6pmryf0mbbek" path="res://assets/Tiles/Colored/tile_0072.png" id="2_fm8g5"]
+[ext_resource type="Texture2D" uid="uid://roq2x2pbdalh" path="res://assets/Tilemap/colored_tilemap.png" id="2_aw68d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u1kl3"]
 radius = 116.017
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7n50"]
+atlas = ExtResource("2_aw68d")
+region = Rect2(72, 36, 8, 8)
 
 [node name="Gun" type="Area2D"]
 collision_layer = 0
@@ -17,14 +21,15 @@ shape = SubResource("CircleShape2D_u1kl3")
 [node name="Marker2D" type="Marker2D" parent="."]
 
 [node name="Pistol" type="Sprite2D" parent="Marker2D"]
-position = Vector2(0, -24)
+position = Vector2(27, -9.53674e-07)
 rotation = 0.785398
 scale = Vector2(2, 2)
-texture = ExtResource("2_fm8g5")
+texture = SubResource("AtlasTexture_q7n50")
 
 [node name="ShootingPoint" type="Marker2D" parent="Marker2D/Pistol"]
 unique_name_in_owner = true
 position = Vector2(4, -4)
+rotation = -0.785398
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

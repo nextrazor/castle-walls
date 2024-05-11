@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 100
 @export var health = 100.0
+@export var xp = 0
 @export var max_health = 100.0
 @export var damageTaken = 5
 
@@ -25,3 +26,12 @@ func _physics_process(delta):
 		%HPBar.value = health / max_health * 100
 		if health <= 0.0:
 			health_deplited.emit()
+
+func take_xp(input_xp:int):
+	#%Slime.play_hurt()
+	xp += 1
+	if health <= 0:
+		queue_free()
+		var smoke = SMOKE_SCENE.instantiate()
+		get_parent().add_child(smoke)
+		smoke.global_position = global_position

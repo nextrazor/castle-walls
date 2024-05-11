@@ -28,6 +28,7 @@ corner_radius_bottom_left = 8
 script = ExtResource("1_tcu3e")
 
 [node name="Gun" parent="." instance=ExtResource("2_l452a")]
+position = Vector2(0, -16)
 
 [node name="HappyBoo" parent="." instance=ExtResource("3_3hwgb")]
 unique_name_in_owner = true
