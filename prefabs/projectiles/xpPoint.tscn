@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bofakwnbbxwyr"]
+
+[ext_resource type="Script" path="res://prefabs/projectiles/xpPointBase.gd" id="1_h3tfs"]
+[ext_resource type="Script" path="res://xp_point.gd" id="1_osyqx"]
+[ext_resource type="Texture2D" uid="uid://3avbhxc04r4p" path="res://assets/Tiles/Colored/tile_0131.png" id="2_3aght"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpndf"]
+radius = 8.0
+
+[node name="xp_point" type="Node2D"]
+script = ExtResource("1_h3tfs")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_osyqx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_mpndf")
+
+[node name="xp_sprite" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_3aght")

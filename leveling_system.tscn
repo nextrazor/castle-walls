@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://4og7gkxuif8h"]
+
+[ext_resource type="Script" path="res://XPMagnet.gd" id="1_fhaim"]
+[ext_resource type="Script" path="res://level_system.gd" id="1_qeaae"]
+[ext_resource type="Script" path="res://XPCollider.gd" id="3_5vktu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jpin"]
+radius = 600.12
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el3dp"]
+radius = 17.0
+
+[node name="LevelingSystem" type="Node2D"]
+script = ExtResource("1_qeaae")
+
+[node name="XPMagnet" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_fhaim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="XPMagnet"]
+shape = SubResource("CircleShape2D_3jpin")
+
+[node name="XPCollider" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_5vktu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="XPCollider"]
+shape = SubResource("CircleShape2D_el3dp")
+
+[connection signal="body_entered" from="XPMagnet" to="XPMagnet" method="_on_body_entered"]
+[connection signal="body_exited" from="XPMagnet" to="XPMagnet" method="_on_body_exited"]
+[connection signal="add_xp" from="XPCollider" to="." method="_on_xp_collider_add_xp"]
+[connection signal="body_entered" from="XPCollider" to="XPCollider" method="_on_body_entered"]

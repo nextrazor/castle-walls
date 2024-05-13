@@ -11,6 +11,8 @@ extends CharacterBody2D
 signal health_deplited
 
 func _physics_process(delta):
+	PlayerVariables.pos = self.global_position
+	
 	var direction = Input.get_vector("move_left","move_right", "move_up", "move_down")
 	velocity = direction * speed
 	move_and_slide()
@@ -26,12 +28,3 @@ func _physics_process(delta):
 		%HPBar.value = health / max_health * 100
 		if health <= 0.0:
 			health_deplited.emit()
-
-func take_xp(input_xp:int):
-	#%Slime.play_hurt()
-	xp += 1
-	if health <= 0:
-		queue_free()
-		var smoke = SMOKE_SCENE.instantiate()
-		get_parent().add_child(smoke)
-		smoke.global_position = global_position

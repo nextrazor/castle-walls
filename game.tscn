@@ -1,12 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmicr2pkyjobf"]
+[gd_scene load_steps=9 format=3 uid="uid://cmicr2pkyjobf"]
 
 [ext_resource type="PackedScene" uid="uid://dy00kr6uj17ni" path="res://prefabs/player/player.tscn" id="1_daoap"]
 [ext_resource type="Script" path="res://game.gd" id="1_u6rqj"]
 [ext_resource type="PackedScene" uid="uid://d2rgb4wbwyuay" path="res://prefabs/enemies/mob.tscn" id="1_wyer3"]
+[ext_resource type="PackedScene" uid="uid://4og7gkxuif8h" path="res://leveling_system.tscn" id="4_rproj"]
 [ext_resource type="PackedScene" uid="uid://b2fdhvixfc2ty" path="res://assets/Tilemap/tile_map.tscn" id="5_0e1e7"]
-[ext_resource type="Script" path="res://xp_point.gd" id="5_rh6eg"]
-[ext_resource type="Texture2D" uid="uid://3avbhxc04r4p" path="res://assets/Tiles/Colored/tile_0131.png" id="6_tg5y2"]
-[ext_resource type="Texture2D" uid="uid://dho50rvk4ntn0" path="res://assets/Tiles/Colored/tile_0132.png" id="7_8aou4"]
+[ext_resource type="PackedScene" uid="uid://bofakwnbbxwyr" path="res://prefabs/projectiles/xpPoint.tscn" id="5_ciqr6"]
 
 [sub_resource type="Curve2D" id="Curve2D_0egpt"]
 _data = {
@@ -17,23 +16,15 @@ point_count = 16
 [sub_resource type="LabelSettings" id="LabelSettings_d1djb"]
 font_size = 95
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4vhu5"]
-
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_u6rqj")
-
-[node name="Node" type="Node" parent="."]
 
 [node name="Mob" parent="." instance=ExtResource("1_wyer3")]
 position = Vector2(196, -16)
 
 [node name="Player" parent="." instance=ExtResource("1_daoap")]
 position = Vector2(-146, 40)
-speed = null
-health = null
-max_health = null
-damageTaken = null
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-598, -370)
@@ -43,6 +34,8 @@ curve = SubResource("Curve2D_0egpt")
 unique_name_in_owner = true
 position = Vector2(-209, -432)
 rotation = -0.303706
+
+[node name="LevelingSystem" parent="Player" instance=ExtResource("4_rproj")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -94,21 +87,8 @@ layer_3/tile_data = PackedInt32Array()
 layer_4/name = "projectile"
 layer_4/tile_data = PackedInt32Array()
 
-[node name="xp_point" type="Node2D" parent="."]
-script = ExtResource("5_rh6eg")
-speed = null
-lifetime = null
-
-[node name="big_xp_sprite" type="Sprite2D" parent="xp_point"]
-texture = ExtResource("6_tg5y2")
-
-[node name="small_xp_sprite" type="Sprite2D" parent="xp_point"]
-texture = ExtResource("7_8aou4")
-
-[node name="Area2D" type="Area2D" parent="xp_point"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="xp_point/Area2D"]
-shape = SubResource("CircleShape2D_4vhu5")
+[node name="xp_point" parent="." instance=ExtResource("5_ciqr6")]
+position = Vector2(-780, -515)
 
 [connection signal="health_deplited" from="Player" to="." method="_on_player_health_deplited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
