@@ -25,6 +25,10 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_snap_length = 0.0
 script = ExtResource("1_tcu3e")
 
 [node name="HappyBoo" parent="." instance=ExtResource("3_3hwgb")]
