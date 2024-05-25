@@ -3,10 +3,7 @@ extends Area2D
 const BULLET = preload("res://prefabs/projectiles/piercing.tscn")
 
 func _physics_process(delta):
-	var enemies_in_range = get_overlapping_bodies()
-	if enemies_in_range.size() > 0:
-		var target = enemies_in_range.front()
-		look_at(target.global_position)
+	look_at(PlayerVariables.pos + PlayerVariables.direction * 100)
 
 func shoot():
 	var new_bullet = BULLET.instantiate()

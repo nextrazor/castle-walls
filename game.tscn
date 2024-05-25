@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmicr2pkyjobf"]
+[gd_scene load_steps=11 format=3 uid="uid://cmicr2pkyjobf"]
 
 [ext_resource type="PackedScene" uid="uid://dy00kr6uj17ni" path="res://prefabs/player/player.tscn" id="1_daoap"]
 [ext_resource type="Script" path="res://game.gd" id="1_u6rqj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4og7gkxuif8h" path="res://leveling_system.tscn" id="4_rproj"]
 [ext_resource type="PackedScene" uid="uid://b2fdhvixfc2ty" path="res://assets/Tilemap/tile_map.tscn" id="5_0e1e7"]
 [ext_resource type="PackedScene" uid="uid://bofakwnbbxwyr" path="res://prefabs/projectiles/xpPoint.tscn" id="5_ciqr6"]
+[ext_resource type="Script" path="res://ShopSystem.gd" id="7_qy3t7"]
 
 [sub_resource type="Curve2D" id="Curve2D_0egpt"]
 _data = {
@@ -15,6 +16,9 @@ point_count = 16
 
 [sub_resource type="LabelSettings" id="LabelSettings_d1djb"]
 font_size = 95
+
+[sub_resource type="LabelSettings" id="LabelSettings_t5h5k"]
+font_size = 100
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -45,7 +49,6 @@ autostart = true
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOver"]
 anchors_preset = 15
@@ -89,6 +92,46 @@ layer_4/tile_data = PackedInt32Array()
 
 [node name="xp_point" parent="." instance=ExtResource("5_ciqr6")]
 position = Vector2(-780, -515)
+
+[node name="ShopScreen" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("7_qy3t7")
+
+[node name="ColorRect" type="ColorRect" parent="ShopScreen"]
+offset_right = 1919.0
+offset_bottom = 1084.0
+color = Color(0.266667, 0.164706, 0.360784, 0.435294)
+
+[node name="Label" type="Label" parent="ShopScreen"]
+offset_left = 726.0
+offset_top = 31.0
+offset_right = 1168.0
+offset_bottom = 168.0
+text = "Level Up!"
+label_settings = SubResource("LabelSettings_t5h5k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="ShopScreen"]
+offset_left = 296.0
+offset_top = 685.0
+offset_right = 612.0
+offset_bottom = 752.0
+text = "Restore HP"
+
+[node name="Button2" type="Button" parent="ShopScreen"]
+offset_left = 1260.0
+offset_top = 684.0
+offset_right = 1576.0
+offset_bottom = 751.0
+text = "Level UP Knife"
+
+[node name="Button3" type="Button" parent="ShopScreen"]
+offset_left = 759.0
+offset_top = 682.0
+offset_right = 1075.0
+offset_bottom = 749.0
+text = "Level UP Bow"
 
 [connection signal="health_deplited" from="Player" to="." method="_on_player_health_deplited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
