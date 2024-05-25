@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var id = randf()
 @onready var player = $/root/Game/Player
 @export var speed = 50
 @export var health = 2

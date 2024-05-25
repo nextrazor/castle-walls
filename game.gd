@@ -6,11 +6,8 @@ func spawn_mob():
 	new_mob.global_position = %PathFollow2D.global_position
 	add_child(new_mob)
 
-
-
 func _on_timer_timeout():
 	spawn_mob()
-
 
 func _on_player_health_deplited():
 	%GameOver.visible = true

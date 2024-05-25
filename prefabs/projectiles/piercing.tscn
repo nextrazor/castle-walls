@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://mohtcyxi3e2a"]
+
+[ext_resource type="Script" path="res://prefabs/projectiles/piercing.gd" id="1_61h64"]
+[ext_resource type="Texture2D" uid="uid://roq2x2pbdalh" path="res://assets/Tilemap/colored_tilemap.png" id="2_xyghn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikf5c"]
+atlas = ExtResource("2_xyghn")
+region = Rect2(54, 36, 8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kgkl8"]
+radius = 3.0
+
+[node name="Piercing" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_61h64")
+
+[node name="Projectile" type="Sprite2D" parent="."]
+position = Vector2(-1, 4.76837e-07)
+rotation = 0.785398
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_ikf5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
+shape = SubResource("CircleShape2D_kgkl8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
